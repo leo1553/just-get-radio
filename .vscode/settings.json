@@ -1,0 +1,32 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.addMissingImports.ts": "explicit"
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.semicolons": "insert",
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.format.semicolons": "insert",
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "terminal.integrated.scrollback": 10000,
+  "files.associations": {
+    ".env-sample": "properties",
+  }
+}
