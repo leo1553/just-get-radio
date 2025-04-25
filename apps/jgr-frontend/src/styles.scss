@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use './app/styles/colors';
+@use './app/styles/fonts';
+
+:root {
+  /* Font */
+  @include fonts.special();
+
+  /* Colors */
+  @include colors.all();
+}
+
+body {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: var(--secondary-tint-90);
+
+  >.bg {
+    $size: 400px;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
+
+    background-color: var(--secondary-2-tint-80);
+    mask: url('/img/bg.png') repeat; // https://www.vecteezy.com/vector-art/13376979-seamless-pattern-of-music-doodle-musical-instruments-notes-headphones-in-sketch-style-hand-drawn-vector-illustration
+    mask-size: $size;
+
+    pointer-events: none;
+  }
+
+  >#app {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:where(h1),
+:where(h2),
+:where(h3),
+:where(h4),
+:where(h5),
+:where(h6) {
+  margin: 0;
+  padding: 0;
+}
+
+:where(button) {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+:where(a) {
+  text-decoration: none;
+}

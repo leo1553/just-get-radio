@@ -1,0 +1,5 @@
+<label [attr.for]="id">
+  <ng-content></ng-content>
+</label>
+<input #input [attr.id]="id" [attr.type]="type" [attr.name]="id" [attr.placeholder]="placeholder" [value]="value"
+  [attr.data-empty]="value.length === 0" (input)="handleInput()" (blur)="handleBlur()">

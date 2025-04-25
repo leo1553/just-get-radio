@@ -1,0 +1,30 @@
+@use '../../styles/text';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+header {
+  h1 {
+    @extend %jgr-stroke-small;
+  }
+}

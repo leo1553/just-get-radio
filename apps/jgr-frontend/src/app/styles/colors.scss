@@ -1,0 +1,191 @@
+@use 'sass:color';
+@use 'sass:map';
+
+$primary: (
+  default: #2e7d32,
+  shades: ( //
+    10: #29712d,
+    20: #256428,
+    30: #205823,
+    40: #1c4b1e,
+    50: #173f19,
+    60: #123214,
+    70: #0e260f,
+    80: #09190a,
+    90: #050d05,
+    100: #000000,
+  ),
+  tints: ( //
+    10: #438a47,
+    20: #58975b,
+    30: #6da470,
+    40: #82b184,
+    50: #97be99,
+    60: #abcbad,
+    70: #c0d8c2,
+    80: #d5e5d6,
+    90: #eaf2eb,
+    100: #ffffff,
+  ),
+);
+
+$primary-2: (
+  default: #5abf6a,
+  shades: ( //
+    10: #51ac5f,
+    20: #489955,
+    30: #3f864a,
+    40: #367340,
+    50: #2d6035,
+    60: #244c2a,
+    70: #1b3920,
+    80: #122615,
+    90: #09130b,
+    100: #000000,
+  ),
+  tints: ( //
+    10: #6bc579,
+    20: #7bcc88,
+    30: #8cd297,
+    40: #9cd9a6,
+    50: #addfb5,
+    60: #bde5c3,
+    70: #ceecd2,
+    80: #def2e1,
+    90: #eff9f0,
+    100: #ffffff,
+  ),
+);
+
+$secondary: (
+  default: #f4cc43,
+  shades: ( //
+    10: #dcb83c,
+    20: #c3a336,
+    30: #ab8f2f,
+    40: #927a28,
+    50: #7a6622,
+    60: #62521b,
+    70: #493d14,
+    80: #31290d,
+    90: #181407,
+    100: #000000,
+  ),
+  tints: ( //
+    10: #f5d156,
+    20: #f6d669,
+    30: #f7db7b,
+    40: #f8e08e,
+    50: #fae6a1,
+    60: #fbebb4,
+    70: #fcf0c7,
+    80: #fdf5d9,
+    90: #fefaec,
+    100: #ffffff,
+  ),
+);
+
+$secondary-2: (
+  default: #f88f19,
+  shades: ( //
+    10: #df8117,
+    20: #c67214,
+    30: #ae6412,
+    40: #95560f,
+    50: #7c480d,
+    60: #63390a,
+    70: #4a2b08,
+    80: #321d05,
+    90: #190e03,
+    100: #000000,
+  ),
+  tints: ( //
+    10: #f99a30,
+    20: #f9a547,
+    30: #fab15e,
+    40: #fbbc75,
+    50: #fcc78c,
+    60: #fcd2a3,
+    70: #fdddba,
+    80: #fee9d1,
+    90: #fef4e8,
+    100: #ffffff,
+  ),
+);
+
+$tertiary: (
+  default: #8fd1ab,
+  shades: ( //
+    10: #81bc9a,
+    20: #72a789,
+    30: #649278,
+    40: #567d67,
+    50: #486956,
+    60: #395444,
+    70: #2b3f33,
+    80: #1d2a22,
+    90: #0e1511,
+    100: #000000,
+  ),
+  tints: ( //
+    10: #9ad6b3,
+    20: #a5dabc,
+    30: #b1dfc4,
+    40: #bce3cd,
+    50: #c7e8d5,
+    60: #d2eddd,
+    70: #ddf1e6,
+    80: #e9f6ee,
+    90: #f4faf7,
+    100: #ffffff,
+  ),
+);
+
+$hot: (
+  default: #d0021b,
+  shades: ( //
+    10: color.mix(white, #d0021b, 10%),
+    20: color.mix(white, #d0021b, 20%),
+    30: color.mix(white, #d0021b, 30%),
+    40: color.mix(white, #d0021b, 40%),
+    50: color.mix(white, #d0021b, 50%),
+    60: color.mix(white, #d0021b, 60%),
+    70: color.mix(white, #d0021b, 70%),
+    80: color.mix(white, #d0021b, 80%),
+    90: color.mix(white, #d0021b, 90%),
+    100: color.mix(white, #d0021b, 100%),
+  ),
+  tints: ( //
+    10: color.mix(black, #d0021b, 10%),
+    20: color.mix(black, #d0021b, 20%),
+    30: color.mix(black, #d0021b, 30%),
+    40: color.mix(black, #d0021b, 40%),
+    50: color.mix(black, #d0021b, 50%),
+    60: color.mix(black, #d0021b, 60%),
+    70: color.mix(black, #d0021b, 70%),
+    80: color.mix(black, #d0021b, 80%),
+    90: color.mix(black, #d0021b, 90%),
+    100: color.mix(black, #d0021b, 100%),
+  ),
+);
+
+@mixin declare($name, $color-map) {
+  --#{$name}: #{map.get($color-map, default)};
+
+  @each $shade-key, $shade-value in map.get($color-map, shades) {
+    --#{$name}-shade-#{$shade-key}: #{$shade-value};
+  }
+
+  @each $tint-key, $tint-value in map.get($color-map, tints) {
+    --#{$name}-tint-#{$tint-key}: #{$tint-value};
+  }
+}
+
+@mixin all {
+  @include declare(primary, $primary);
+  @include declare(primary-2, $primary-2);
+  @include declare(secondary, $secondary);
+  @include declare(secondary-2, $secondary-2);
+  @include declare(tertiary, $tertiary);
+  @include declare(hot, $hot);
+}

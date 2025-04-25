@@ -1,0 +1,21 @@
+<header class="cover">
+  <img [src]="coverUrl" alt="Cover" />
+  <span>{{ duration | date:'m:ss' }}</span>
+</header>
+
+<main class="info">
+  <h3 [attr.data-text]="title">{{ title }}</h3>
+  <div class="info-group">
+    <h4>{{ artist }}</h4>
+    <!-- <h5>{{ album }}</h5> -->
+  </div>
+</main>
+
+<footer>
+  <button title="Adicionar à playlist">
+    <app-icon icon="add" />
+  </button>
+  <button title="Tocar agora">
+    <app-icon icon="play" />
+  </button>
+</footer>

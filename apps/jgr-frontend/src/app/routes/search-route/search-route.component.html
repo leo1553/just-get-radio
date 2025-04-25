@@ -1,0 +1,44 @@
+@let search = search$ | async;
+@if (search) {
+@if ((search.artist?.songs?.length ?? 0) > 0 || search.songs.length > 0) {
+@if (search.artist) {
+<article>
+  <header>
+    <h1 [attr.data-text]="search.artist.name">{{ search.artist.name }}</h1>
+  </header>
+  <main>
+    @if (search.artist.songs.length > 0) {
+    @for (song of search.artist.songs; track song.id) {
+    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [album]="song.album" [duration]="song.duration"
+      [cover]="song.cover" [url]="song.url"></app-song>
+    }
+    }
+  </main>
+</article>
+}
+
+@if (search.songs.length > 0) {
+<article>
+  <header>
+    <h1 data-text="Músicas">Músicas</h1>
+  </header>
+  <main>
+    @for (song of search.songs; track song.id) {
+    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [album]="song.album" [duration]="song.duration"
+      [cover]="song.cover" [url]="song.url"></app-song>
+    }
+  </main>
+</article>
+}
+}
+@else {
+<span>
+  Nenhum resultado foi encontrado. Tente procurar pelo nome do artista ou por outra palavra-chave.
+</span>
+}
+}
+@else {
+<span>
+  Carregando...
+</span>
+}

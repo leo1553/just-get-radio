@@ -1,0 +1,94 @@
+$padding-v: 16px;
+$padding-h: 24px;
+
+:host {
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: column;
+}
+
+label {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: 28px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+
+  --label-color: var(--primary-shade-10);
+  --icon-color: var(--label-color);
+  color: var(--label-color);
+
+  transition: all .1333s linear;
+  pointer-events: none;
+  z-index: 1;
+
+  // quando nao estiver vazio
+  &:not(:empty) {
+
+    // ajusta o tamanho do icone da label
+    ::ng-deep {
+      &>*:is(app-icon, [app-icon]) {
+        $size: 14px;
+        width: $size;
+        height: $size;
+        transform: translateY(-1px);
+      }
+    }
+
+    // quando o input estiver focado, exibindo o placeholder ou com valor
+    &:has(+input:is(:placeholder-shown, :focus-visible, [data-empty=false])) {
+      // reduz o tamanho da label e a move para cima do valor do input
+      font-size: small;
+      top: 10px;
+      left: 28px;
+
+      // move o valor do input para baixo
+      &+input {
+        $distance: 8px;
+        padding: ($padding-v + $distance) $padding-h //
+          ($padding-v - $distance) $padding-h;
+      }
+
+      // reduz o tamanho do icone da label
+      ::ng-deep {
+        &>*:is(app-icon, [app-icon]) {
+          $size: 10px;
+          width: $size;
+          height: $size;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+input {
+  margin: 2px;
+  padding: $padding-v $padding-h;
+
+  border: solid 2px var(--primary-shade-10);
+  outline: solid 2px var(--primary-2-shade-10);
+  background-color: var(--secondary-tint-80);
+
+  border-radius: 24px;
+
+  transition: outline-width .1333s linear, box-shadow .1333s linear;
+  z-index: 0;
+
+  box-shadow: 0 0 0 0 rgba(black, 0.1);
+
+  flex: 1 0;
+
+  &:focus-visible {
+    outline-width: 4px;
+    box-shadow: 0 0 0 16px rgba(black, 0.1);
+  }
+
+  &::placeholder {
+    opacity: .8;
+  }
+}

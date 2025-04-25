@@ -1,0 +1,62 @@
+/** @see https://gist.github.com/haggen/4649531d084f56fd877e */
+
+@mixin stroke($color, $size: 1px) {
+  $value: null;
+
+  @for $x from $size * -1 through $size {
+    @for $y from $size * -1 through $size {
+      @if not ($x ==0px and $y ==0px) {
+        $value: $value, $x $y $color;
+      }
+    }
+  }
+
+  text-shadow: $value;
+}
+
+@mixin jgr-stroke($color1, $size1, $color2, $size2, $text-color, $text-source) {
+  position: relative;
+  color: $text-color;
+  font-weight: 900;
+  z-index: 0;
+
+  &::before,
+  &::after {
+    content: $text-source;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    font-weight: inherit;
+  }
+
+  &::before {
+    z-index: -1;
+    @include stroke($color1, $size1);
+  }
+
+  &::after {
+    z-index: -2;
+    @include stroke($color2, $size2);
+  }
+}
+
+%jgr-stroke {
+  @include jgr-stroke( //
+    $color1: var(--primary), $size1: 4px, //
+    $color2: var(--primary-2), $size2: 8px, //
+    $text-color: var(--secondary), //
+    $text-source: attr(data-text), //
+  );
+}
+
+%jgr-stroke-small {
+  @include jgr-stroke( //
+    $color1: var(--primary), $size1: 2px, //
+    $color2: var(--primary-2), $size2: 4px, //
+    $text-color: var(--secondary), //
+    $text-source: attr(data-text), //
+  );
+}

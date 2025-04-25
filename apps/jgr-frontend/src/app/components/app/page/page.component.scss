@@ -1,0 +1,23 @@
+@use 'sass:math';
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 16px 24px;
+
+  gap: 32px;
+
+  &>* {
+    flex-basis: #{math.div(100%, 3)};
+  }
+
+  div {
+    display: flex;
+  }
+}
+
+main {
+  margin: 32px 64px;
+}

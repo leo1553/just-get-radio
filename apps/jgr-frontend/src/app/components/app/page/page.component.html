@@ -1,0 +1,13 @@
+<header>
+  <div>
+    <a href="/">
+      <app-title />
+    </a>
+  </div>
+  <app-search [value]="searchValue" (valueChange)="handleSearchValueChange($event)"
+    (appSubmit)="handleSearchSubmit($event)" />
+  <div></div>
+</header>
+<main>
+  <router-outlet />
+</main>

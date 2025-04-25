@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup" (ngSubmit)="handleSubmit()">
+  <app-input id="search" [formControlName]="'search'">
+    <app-icon icon="search" />
+    Buscar musicas ou playlists
+  </app-input>
+
+  <button id="submit-search" type="submit" [disabled]="!formGroup.valid">
+    <app-icon icon="send" />
+  </button>
+</form>

@@ -1,0 +1,31 @@
+:host {
+  display: inline-flex;
+  flex-direction: column;
+
+  transition: all .1333s linear;
+
+  background-color: var(--icon-color);
+
+  width: 16px;
+  height: 16px;
+}
+
+:host([icon=search]) {
+  mask: url('https://static-00.iconduck.com/assets.00/search-icon-2048x2048-cmujl7en.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=send]) {
+  mask: url('https://cdn-icons-png.flaticon.com/512/60/60525.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=play]) {
+  mask: url('https://cdn-icons-png.flaticon.com/512/10181/10181264.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=add]) {
+  mask: url('https://cdn3.iconfinder.com/data/icons/makinterang-music-solid/24/21._Add_playlist-512.png') no-repeat center;
+  mask-size: contain;
+}

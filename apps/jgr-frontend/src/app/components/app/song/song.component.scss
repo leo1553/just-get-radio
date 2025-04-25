@@ -1,0 +1,137 @@
+@use '../../../styles/colors';
+@use '../../../styles/text';
+
+@use 'sass:color';
+@use 'sass:map';
+
+$max-width: 244px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1 0 $max-width;
+  max-width: $max-width;
+
+  background-color: var(--secondary-tint-90);
+
+  border-radius: 8px;
+
+  border: solid 2px var(--primary-shade-10);
+  outline: solid 2px var(--primary-2-shade-10);
+
+  box-shadow: 0 0 0 8px rgba(black, 0.1);
+
+  transition: box-shadow .0766s linear;
+
+  &:hover {
+    box-shadow: 0 0 0 12px rgba(black, 0.1);
+  }
+}
+
+header {
+  position: relative;
+  display: flex;
+
+  >img {
+    width: 240px;
+    height: 240px;
+    object-fit: fill;
+
+    border-radius: 6px 6px 0 0;
+
+    pointer-events: none;
+  }
+
+  >span {
+    position: absolute;
+
+    right: 16px;
+    bottom: 8px;
+
+    color: white;
+    font-size: smaller;
+    font-weight: bolder;
+
+    @include text.stroke(black, 1px);
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+
+  >div {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-end;
+
+  padding: 4px 12px;
+}
+
+h3,
+h3::before,
+h3::after,
+h4,
+h5 {
+  flex-grow: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+h3,
+h3::before,
+h3::after {
+  padding: 0 4px;
+}
+
+h3 {
+  @extend %jgr-stroke-small;
+}
+
+h4 {
+  color: var(--primary);
+  flex-grow: 1;
+}
+
+h5 {
+  color: var(--primary-2);
+  font-weight: lighter;
+}
+
+button {
+  --icon-color: var(--primary);
+
+  display: flex;
+
+  border-radius: 8px;
+  padding: 8px;
+
+  transition: background-color .1333s linear, box-shadow .1333s linear;
+
+  &:not(:disabled) {
+    &:is(:focus-visible, :hover) {
+      background-color: rgba(black, 0.1);
+    }
+
+    &:is(:focus-visible, :active) {
+      box-shadow: 0 0 0 8px rgba(black, 0.1);
+    }
+  }
+
+  &>app-icon {
+    $size: 24px;
+    width: $size;
+    height: $size;
+  }
+}
