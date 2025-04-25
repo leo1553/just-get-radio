@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Song } from '../../../services/search.service';
 import { IconComponent } from '../../ui/icon';
+import { NowPlayingService } from '../now-playing/now-playing.service';
 
 @Component({
   selector: 'app-song, [app-song]',
@@ -10,6 +11,8 @@ import { IconComponent } from '../../ui/icon';
   imports: [CommonModule, IconComponent],
 })
 export class SongComponent implements Song {
+  private readonly nowPlayingService = inject(NowPlayingService);
+
   @Input({ required: true })
   public id!: string;
 
@@ -33,5 +36,16 @@ export class SongComponent implements Song {
 
   public get coverUrl(): string {
     return this.cover ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
+  }
+
+  public handlePlayClick(): void {
+    this.nowPlayingService.nowPlaying$.next(this);
+  }
+
+  public handleAddToPlaylistClick(): void {
+    this.nowPlayingService.queue$.next(
+      this.nowPlayingService.queue$
+        .getValue().concat(this),
+    );
   }
 }

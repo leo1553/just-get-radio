@@ -89,7 +89,7 @@ export class SearchService {
               duration: +mvid.intDuration,
               cover: mvid.strTrackThumb,
               url: mvid.strMusicVid,
-            })),
+            })).sort((a, b) => a.title.localeCompare(b.title)),
           })),
         );
       }),
@@ -107,7 +107,7 @@ export class SearchService {
           duration: +mvid.intDuration,
           cover: mvid.strTrackThumb,
           url: mvid.strMusicVid,
-        }))
+        })).sort((a, b) => a.title.localeCompare(b.title))
         : []
       ),
     );

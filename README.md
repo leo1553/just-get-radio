@@ -31,7 +31,7 @@ Extra (opcional):
   - Barra de pesquisa para buscar músicas
 - [x] Página de músicas
   - Busca as músicas do backend
-- [ ] Barra de música
+- [x] Barra de música
   - Exibir nome da música e autor
   - Botões de play/pausa, controle de volume, proxima música
 - [ ] Autenticação placeholder

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { SearchComponent } from '../search';
 import { TitleComponent } from '../title';
 import { PageService } from './page.service';
@@ -10,7 +10,7 @@ import { PageService } from './page.service';
   selector: 'app-page',
   templateUrl: 'page.component.html',
   styleUrl: 'page.component.scss',
-  imports: [CommonModule, RouterOutlet, SearchComponent, TitleComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, SearchComponent, TitleComponent],
 })
 export class PageComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

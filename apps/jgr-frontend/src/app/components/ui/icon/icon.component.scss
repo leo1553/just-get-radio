@@ -21,11 +21,28 @@
 }
 
 :host([icon=play]) {
-  mask: url('https://cdn-icons-png.flaticon.com/512/10181/10181264.png') no-repeat center;
+  mask: url('https://cdn-icons-png.flaticon.com/128/27/27223.png') no-repeat center;
   mask-size: contain;
+  transform: scale(80%);
 }
 
 :host([icon=add]) {
   mask: url('https://cdn3.iconfinder.com/data/icons/makinterang-music-solid/24/21._Add_playlist-512.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=pause]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/2920/2920686.png') no-repeat center;
+  mask-size: contain;
+  transform: scale(80%);
+}
+
+:host([icon=volume]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/6996/6996058.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=next]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/4818/4818800.png') no-repeat center;
   mask-size: contain;
 }

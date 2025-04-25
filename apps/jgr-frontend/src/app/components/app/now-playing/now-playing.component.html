@@ -1,0 +1,48 @@
+@let progress = progress$ | async;
+@let currentTime = currentTime$ | async;
+@let nextSong = nextSong$ | async;
+
+<header>
+  <!-- TODO: mover para um componente -->
+  <div role="slider" aria-label="Tempo atual" [attr.aria-valuenow]="progress" [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="100" [style.--progress]="progress + '%'"
+    [attr.aria-disabled]="currentSong == null || !playing" (click)="handleCurrentTimeBarClick($event)">
+  </div>
+</header>
+<main>
+  <div class="buttons">
+    @if (currentSong == null || !playing) {
+    <button [disabled]="currentSong == null" (click)="handlePlayClick()">
+      <app-icon icon="play" />
+    </button>
+    } @else {
+    <button (click)="handlePauseClick()">
+      <app-icon icon="pause" />
+    </button>
+    }
+
+    <button [disabled]="nextSong == null" (click)="handleNextClick(nextSong!)">
+      <app-icon icon="next" />
+    </button>
+  </div>
+
+  <small>{{ currentTime | date:'m:ss' }} : {{ duration | date:'m:ss' }}</small>
+
+  <div class="song-info">
+    @if (currentSong != null) {
+    <h5 class="title">{{ currentSong.title }}</h5>
+    <h5 class="artist">{{ currentSong.artist }}</h5>
+    }
+  </div>
+
+  <!-- TODO: mover para um componente -->
+  <div class="volume">
+    <app-icon icon="volume" />
+    <div role="slider" aria-label="Volume" [attr.aria-valuenow]="volume" [attr.aria-valuemin]="0"
+      [attr.aria-valuemax]="100" [style.--progress]="volume + '%'" (click)="handleVolumeBarClick($event)"
+      (mousedown)="handleVolumeBarMouseDown($event)">
+    </div>
+  </div>
+</main>
+
+<div id="now-playing-frame"></div>

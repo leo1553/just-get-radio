@@ -1,0 +1,161 @@
+$height: 56px;
+
+:host {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: $height;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--secondary-tint-80);
+
+  border-top: solid 2px var(--primary-shade-10);
+  outline: solid 2px var(--primary-2-shade-10);
+
+  box-shadow: 0 0 0 16px rgba(black, 0.1);
+}
+
+[role=slider] {
+  position: relative;
+
+  width: 100%;
+  height: 5px;
+
+
+  cursor: pointer;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    width: var(--progress);
+    height: 100%;
+
+
+    pointer-events: none;
+  }
+
+  &[aria-disabled=true] {
+    cursor: default;
+  }
+}
+
+header {
+  [role=slider] {
+    background-color: var(--secondary-2-tint-50);
+
+    &::before {
+      background-color: var(--secondary-2);
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 32px;
+
+  flex-grow: 1;
+  padding: 0 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+}
+
+button {
+  --icon-color: var(--primary);
+
+  display: flex;
+
+  border-radius: 8px;
+  padding: 8px;
+
+  transition: background-color .1333s linear, box-shadow .1333s linear;
+
+  &:disabled {
+    filter: saturate(.25);
+  }
+
+  &:not(:disabled) {
+    &:is(:focus-visible, :hover) {
+      background-color: rgba(black, 0.1);
+    }
+
+    &:is(:focus-visible, :active) {
+      box-shadow: 0 0 0 8px rgba(black, 0.1);
+    }
+  }
+
+  &>app-icon {
+    $size: 24px;
+    width: $size;
+    height: $size;
+  }
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+  user-select: none;
+
+  flex: 1;
+
+  .title {
+    color: var(--primary-shade-20);
+  }
+
+  .artist {
+    color: var(--primary);
+  }
+}
+
+small {
+  min-width: 64px;
+}
+
+.volume {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+
+  app-icon {
+    width: 20px;
+    height: 20px;
+    --icon-color: var(--primary);
+  }
+
+  [role=slider] {
+    width: 128px;
+
+    background-color: var(--secondary-2-tint-50);
+    border-radius: 16px;
+    overflow: hidden;
+
+    &::before {
+      background-color: var(--secondary-2);
+    }
+  }
+}
+
+::ng-deep {
+  *:has(>app-now-playing, >[app-now-playing]) {
+    border-bottom: $height solid transparent;
+  }
+
+  #now-playing-frame {
+    display: none;
+    visibility: hidden;
+  }
+}
