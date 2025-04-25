@@ -1,0 +1,14 @@
+FROM node:slim
+
+WORKDIR /www
+
+COPY /apps/jgr-backend/dist /www
+COPY /apps/jgr-backend/package.json /www
+
+RUN mkdir /www/db
+
+RUN npm install --force
+
+EXPOSE 3000
+
+CMD ["node", "main.js"]

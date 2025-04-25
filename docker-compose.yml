@@ -1,0 +1,17 @@
+services:
+  jgr-server:
+    build:
+      context: .
+      dockerfile: ./docker/server/dockerfile
+    volumes:
+      - ./docker/db:/www/db
+    ports:
+      - 3000:3000
+  jgr-nginx:
+    depends_on:
+      - jgr-server
+    build:
+      context: .
+      dockerfile: ./docker/nginx/dockerfile
+    ports:
+      - 80:80

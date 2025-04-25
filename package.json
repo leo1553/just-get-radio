@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run --filter jgr-* dev"
+    "dev": "pnpm run --filter jgr-* dev",
+    "build": "pnpm run --filter jgr-* build",
+    "start": "pnpm build && docker-compose up -d"
   },
   "keywords": [],
   "author": "",
