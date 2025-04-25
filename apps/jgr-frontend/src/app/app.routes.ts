@@ -16,6 +16,14 @@ export const routes: Routes = [
         loadComponent: () => import('./routes/search-route').then(m => m.SearchRouteComponent),
       },
       {
+        path: 'playlist/:id',
+        loadComponent: () => import('./routes/playlist-route').then(m => m.PlaylistRouteComponent),
+      },
+      {
+        path: 'playlists',
+        loadComponent: () => import('./routes/playlists-route').then(m => m.PlaylistsRouteComponent),
+      },
+      {
         path: '**',
         loadComponent: () => import('./routes/not-found-route').then(m => m.NotFoundRouteComponent),
       }

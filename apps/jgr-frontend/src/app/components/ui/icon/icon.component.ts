@@ -8,5 +8,5 @@ import { Component, HostBinding, Input } from '@angular/core';
 export class IconComponent {
   @Input()
   @HostBinding('attr.icon')
-  public icon!: 'search' | 'send' | 'play' | 'add' | 'pause' | 'volume' | 'next';
+  public icon!: 'search' | 'send' | 'play' | 'pause' | 'volume' | 'next' | 'play-next' | 'playlist' | 'playlist-add' | 'close' | 'delete' | 'edit';
 }

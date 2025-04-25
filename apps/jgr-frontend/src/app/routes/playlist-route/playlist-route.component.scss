@@ -1,0 +1,25 @@
+@use '../../styles/text';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+
+  h1 {
+    @extend %jgr-stroke-small;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+}

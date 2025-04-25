@@ -1,20 +1,7 @@
-export type Song = {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-  duration: number;
-  cover?: string;
-  url: string;
-};
-
-export type ArtistSongs = {
-  id: string;
-  name: string;
-  songs: Song[];
-};
+import { ArtistSongs, PlaylistSongs, Song } from 'src/models/song.models';
 
 export type SearchResponse = {
   artist?: ArtistSongs;
+  playlists: PlaylistSongs[];
   songs: Song[];
 };

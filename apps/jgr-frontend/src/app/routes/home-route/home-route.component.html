@@ -1,3 +1,8 @@
-<header app-title [useAnim]="true">
-</header>
-<main app-search (appSubmit)="handleSearchSubmit($event)"></main>
+<header app-title [useAnim]="true"></header>
+<main>
+  <app-search (appSubmit)="handleSearchSubmit($event)" />
+  <a routerLink="/playlists">
+    <app-icon icon="playlist" />
+    <span>Minhas playlists</span>
+  </a>
+</main>

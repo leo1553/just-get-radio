@@ -1,0 +1,24 @@
+@let playlists = playlists$ | async;
+
+<header>
+  <h1 data-text="Minhas playlists">Minhas playlists</h1>
+  <app-playlist-button type="create" name="Nova playlist" (create)="handlePlaylistCreate(playlists!, $event)" />
+</header>
+<main>
+  @if (playlists) {
+  @if (playlists.length > 0) {
+  @for (playlist of playlists; track playlist.id) {
+  <app-playlist [id]="playlist.id!" [name]="playlist.name" owner="Você" [songs]="playlist.songs" [editable]="true"
+    [deletable]="true" (delete)="handlePlaylistDelete(playlists, $index)" />
+  }
+  } @else {
+  <span>
+    Você não tem playlists.
+  </span>
+  }
+  } @else {
+  <span>
+    Carregando...
+  </span>
+  }
+</main>

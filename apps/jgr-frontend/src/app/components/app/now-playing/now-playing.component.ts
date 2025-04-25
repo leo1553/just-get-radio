@@ -4,13 +4,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { animationFrames, fromEvent, map, share, takeUntil } from 'rxjs';
 import { Song } from '../../../services/search.service';
 import { IconComponent } from '../../ui/icon';
+import { QueueComponent } from '../queue';
 import { NowPlayingService } from './now-playing.service';
 
 @Component({
   selector: 'app-now-playing, [app-now-playing]',
   templateUrl: 'now-playing.component.html',
   styleUrl: 'now-playing.component.scss',
-  imports: [CommonModule, IconComponent],
+  imports: [CommonModule, IconComponent, QueueComponent],
 })
 export class NowPlayingComponent implements AfterViewInit {
   private readonly nowPlayingService = inject(NowPlayingService);
@@ -104,12 +105,8 @@ export class NowPlayingComponent implements AfterViewInit {
     this.playing = false;
   }
 
-  public handleNextClick(nextSong: Song): void {
-    this.nowPlayingService.nowPlaying$.next(nextSong);
-    this.nowPlayingService.queue$.next(
-      this.nowPlayingService.queue$
-        .getValue().slice(1),
-    );
+  public handleNextClick(): void {
+    this.nowPlayingService.next();
   }
 
   public handleCurrentTimeBarClick(mouseEvent: MouseEvent): void {
@@ -156,8 +153,10 @@ export class NowPlayingComponent implements AfterViewInit {
   }
 
   private handlePlayerStateChange(event: any): void {
-    if (event.state === -1) {
+    if (event.data === -1) {
       this.player.playVideo();
+    } else if (event.data === 0) {
+      this.nowPlayingService.next();
     }
   }
 

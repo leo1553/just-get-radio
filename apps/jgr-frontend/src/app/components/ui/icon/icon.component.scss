@@ -26,11 +26,6 @@
   transform: scale(80%);
 }
 
-:host([icon=add]) {
-  mask: url('https://cdn3.iconfinder.com/data/icons/makinterang-music-solid/24/21._Add_playlist-512.png') no-repeat center;
-  mask-size: contain;
-}
-
 :host([icon=pause]) {
   mask: url('https://cdn-icons-png.flaticon.com/128/2920/2920686.png') no-repeat center;
   mask-size: contain;
@@ -45,4 +40,35 @@
 :host([icon=next]) {
   mask: url('https://cdn-icons-png.flaticon.com/128/4818/4818800.png') no-repeat center;
   mask-size: contain;
+}
+
+:host([icon=play-next]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/4043/4043797.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=playlist]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/9432/9432053.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=playlist-add]) {
+  mask: url('https://cdn3.iconfinder.com/data/icons/makinterang-music-solid/24/21._Add_playlist-512.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=close]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/6583/6583137.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=delete]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/3405/3405244.png') no-repeat center;
+  mask-size: contain;
+}
+
+:host([icon=edit]) {
+  mask: url('https://cdn-icons-png.flaticon.com/128/1828/1828911.png') no-repeat center;
+  mask-size: contain;
+  transform: scale(80%);
 }

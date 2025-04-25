@@ -12,10 +12,44 @@
 </main>
 
 <footer>
+  @if (deletable) {
+  <button title="Remover da playlist" (click)="delete.emit()">
+    <app-icon icon="delete" />
+  </button>
+  } @else {
   <button title="Adicionar à playlist" (click)="handleAddToPlaylistClick()">
-    <app-icon icon="add" />
+    <app-icon icon="playlist-add" />
+  </button>
+  }
+
+  <button title="Tocar a seguir" (click)="handlePlayNextClick()">
+    <app-icon icon="play-next" />
   </button>
   <button title="Tocar agora" (click)="handlePlayClick()">
     <app-icon icon="play" />
   </button>
 </footer>
+
+<dialog #addToPlaylistDialog class="modal">
+  @if (addToPlaylistDialog.open) {
+  <header>
+    <h2 data-text="Adicionar à playlist">Adicionar à playlist</h2>
+    <button (click)="addToPlaylistDialog.close()">
+      <app-icon icon="close" />
+    </button>
+  </header>
+  <main>
+    @let playlists = playlists$ | async;
+    @if (playlists) {
+    @for (playlist of playlists; track playlist.id) {
+    <span class="name">{{ playlist.name }}</span>
+    <button type="button" title="Adicionar à playlist" (click)="handleAddToPlaylistModalClick(playlist)">
+      <app-icon icon="playlist-add" />
+    </button>
+    }
+    } @else {
+    <span class="title">Você não tem playlists.</span>
+    }
+  </main>
+  }
+</dialog>

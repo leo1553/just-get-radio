@@ -1,3 +1,4 @@
+@if (currentSong != null) {
 @let progress = progress$ | async;
 @let currentTime = currentTime$ | async;
 @let nextSong = nextSong$ | async;
@@ -21,12 +22,12 @@
     </button>
     }
 
-    <button [disabled]="nextSong == null" (click)="handleNextClick(nextSong!)">
+    <button [disabled]="nextSong == null" (click)="handleNextClick()">
       <app-icon icon="next" />
     </button>
   </div>
 
-  <small>{{ currentTime | date:'m:ss' }} : {{ duration | date:'m:ss' }}</small>
+  <small>{{ currentTime | date:'m:ss' }}/{{ duration | date:'m:ss' }}</small>
 
   <div class="song-info">
     @if (currentSong != null) {
@@ -43,6 +44,9 @@
       (mousedown)="handleVolumeBarMouseDown($event)">
     </div>
   </div>
+
+  <app-queue />
 </main>
+}
 
 <div id="now-playing-frame"></div>

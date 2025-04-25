@@ -6,7 +6,6 @@ export type Song = {
   id: string;
   title: string;
   artist: string;
-  album: string;
   duration: number;
   cover?: string;
   url: string;
@@ -18,10 +17,18 @@ export type ArtistSongs = {
   songs: Song[];
 };
 
-export type SearchResponse = {
-  artist?: ArtistSongs;
+export type PlaylistSongs = {
+  id: number;
+  name: string;
   songs: Song[];
 };
+
+export type SearchResponse = {
+  artist?: ArtistSongs;
+  playlists: PlaylistSongs[];
+  songs: Song[];
+};
+
 
 @Injectable({
   providedIn: 'root'

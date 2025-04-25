@@ -1,22 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { first, map, merge, shareReplay, switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first, map, merge, share, shareReplay, switchMap } from 'rxjs';
 import { PageService } from '../../components/app/page';
+import { PlaylistComponent } from '../../components/app/playlist';
+import { PlaylistButtonComponent } from '../../components/app/playlist-button';
 import { SongComponent } from '../../components/app/song';
+import { Playlist } from '../../services/playlist.service';
 import { SearchService } from '../../services/search.service';
 
 @Component({
   templateUrl: 'search-route.component.html',
   styleUrl: 'search-route.component.scss',
-  imports: [CommonModule, SongComponent],
+  imports: [CommonModule, PlaylistButtonComponent, SongComponent, PlaylistComponent],
 })
 export class SearchRouteComponent implements OnInit {
-  private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly pageService = inject(PageService);
+  public readonly pageService = inject(PageService);
   private readonly searchService = inject(SearchService);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+
+  public readonly query$ = this.pageService.searchValue$.pipe(
+    takeUntilDestroyed(),
+    share(),
+  );
 
   public readonly search$ = merge(
     // Limpa a pesquisa ao submeter um novo valor
@@ -41,6 +50,10 @@ export class SearchRouteComponent implements OnInit {
     this.pageService.searchSubmit$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(query => this.handleSearchSubmit(query));
+  }
+
+  public handlePlaylistCreate(playlist: Playlist): void {
+    this.router.navigate(['playlist', playlist.id]);
   }
 
   private handleSearchSubmit(query: string): void {

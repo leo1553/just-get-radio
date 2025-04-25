@@ -1,0 +1,31 @@
+<header class="cover">
+  <img [src]="coverUrl" alt="Cover" />
+  <span>{{ duration | date:'H:mm:ss':'UTC' }}</span>
+</header>
+
+<main class="info">
+  <h3 [attr.data-text]="name">{{ name }}</h3>
+  <div class="info-group">
+    <h4>{{ owner }}</h4>
+  </div>
+</main>
+
+<footer>
+  @if (deletable) {
+  <button title="Remover da playlist" (click)="delete.emit()">
+    <app-icon icon="delete" />
+  </button>
+  }
+
+  @if (editable) {
+  <a title="Editar" [routerLink]="['/playlist', id]">
+    <app-icon icon="edit" />
+  </a>
+  }
+
+  @if (songs.length > 0) {
+  <button title="Tocar agora" (click)="handlePlayClick()">
+    <app-icon icon="play" />
+  </button>
+  }
+</footer>

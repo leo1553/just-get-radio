@@ -1,16 +1,20 @@
 @let search = search$ | async;
 @if (search) {
-@if ((search.artist?.songs?.length ?? 0) > 0 || search.songs.length > 0) {
+@if ((search.artist?.songs?.length ?? 0) > 0 || search.songs.length > 0 || search.playlists.length > 0) {
 @if (search.artist) {
 <article>
   <header>
-    <h1 [attr.data-text]="search.artist.name">{{ search.artist.name }}</h1>
+    <h1 [attr.data-text]="`Artista: ${search.artist.name}`">
+      Artista: {{ search.artist.name }}
+    </h1>
+    <app-playlist-button [name]="search.artist.name" [songs]="search.artist.songs"
+      (create)="handlePlaylistCreate($event)" />
   </header>
   <main>
     @if (search.artist.songs.length > 0) {
     @for (song of search.artist.songs; track song.id) {
-    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [album]="song.album" [duration]="song.duration"
-      [cover]="song.cover" [url]="song.url"></app-song>
+    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [duration]="song.duration" [cover]="song.cover"
+      [url]="song.url" />
     }
     }
   </main>
@@ -21,11 +25,26 @@
 <article>
   <header>
     <h1 data-text="Músicas">Músicas</h1>
+    <app-playlist-button [name]="pageService.searchValue$.getValue()" [songs]="search.songs"
+      (create)="handlePlaylistCreate($event)" />
   </header>
   <main>
     @for (song of search.songs; track song.id) {
-    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [album]="song.album" [duration]="song.duration"
-      [cover]="song.cover" [url]="song.url"></app-song>
+    <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [duration]="song.duration" [cover]="song.cover"
+      [url]="song.url" />
+    }
+  </main>
+</article>
+}
+
+@if (search.playlists.length > 0) {
+<article>
+  <header>
+    <h1 data-text="Playlists">Playlists</h1>
+  </header>
+  <main>
+    @for (playlist of search.playlists; track playlist.id) {
+    <app-playlist [id]="playlist.id" [name]="playlist.name" owner="Você" [songs]="playlist.songs" />
     }
   </main>
 </article>

@@ -1,6 +1,8 @@
+@use '../../../styles/button';
+
 $height: 56px;
 
-:host {
+:host:has(>header) {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -72,28 +74,7 @@ main {
 }
 
 button {
-  --icon-color: var(--primary);
-
-  display: flex;
-
-  border-radius: 8px;
-  padding: 8px;
-
-  transition: background-color .1333s linear, box-shadow .1333s linear;
-
-  &:disabled {
-    filter: saturate(.25);
-  }
-
-  &:not(:disabled) {
-    &:is(:focus-visible, :hover) {
-      background-color: rgba(black, 0.1);
-    }
-
-    &:is(:focus-visible, :active) {
-      box-shadow: 0 0 0 8px rgba(black, 0.1);
-    }
-  }
+  @extend %jgr-button;
 
   &>app-icon {
     $size: 24px;
@@ -150,8 +131,8 @@ small {
 }
 
 ::ng-deep {
-  *:has(>app-now-playing, >[app-now-playing]) {
-    border-bottom: $height solid transparent;
+  *:has(>app-now-playing>header, >[app-now-playing]>header) {
+    border-bottom: solid $height transparent;
   }
 
   #now-playing-frame {

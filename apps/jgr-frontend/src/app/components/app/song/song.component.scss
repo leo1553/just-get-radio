@@ -1,3 +1,4 @@
+@use '../../../styles/button';
 @use '../../../styles/colors';
 @use '../../../styles/text';
 
@@ -27,55 +28,65 @@ $max-width: 244px;
   &:hover {
     box-shadow: 0 0 0 12px rgba(black, 0.1);
   }
-}
 
-header {
-  position: relative;
-  display: flex;
+  >header {
+    position: relative;
+    display: flex;
 
-  >img {
-    width: 240px;
-    height: 240px;
-    object-fit: fill;
+    >img {
+      width: 240px;
+      height: 240px;
+      object-fit: fill;
 
-    border-radius: 6px 6px 0 0;
+      border-radius: 6px 6px 0 0;
 
-    pointer-events: none;
+      pointer-events: none;
+    }
+
+    >span {
+      position: absolute;
+
+      right: 16px;
+      bottom: 8px;
+
+      color: white;
+      font-size: smaller;
+      font-weight: bolder;
+
+      @include text.stroke(black, 1px);
+    }
   }
 
-  >span {
-    position: absolute;
+  >main {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
 
-    right: 16px;
-    bottom: 8px;
-
-    color: white;
-    font-size: smaller;
-    font-weight: bolder;
-
-    @include text.stroke(black, 1px);
+    >div {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+    }
   }
-}
 
-main {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 12px;
-
-  >div {
+  >footer {
     display: flex;
     flex-direction: row;
-    gap: 4px;
+    gap: 12px;
+    justify-content: flex-end;
+
+    padding: 4px 12px;
+
+    button {
+      @extend %jgr-button;
+
+      &>app-icon {
+        $size: 24px;
+        width: $size;
+        height: $size;
+      }
+    }
   }
-}
-
-footer {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  justify-content: flex-end;
-
-  padding: 4px 12px;
 }
 
 h3,
@@ -109,29 +120,42 @@ h5 {
   font-weight: lighter;
 }
 
-button {
-  --icon-color: var(--primary);
+dialog {
 
-  display: flex;
+  button {
+    @extend %jgr-button;
 
-  border-radius: 8px;
-  padding: 8px;
-
-  transition: background-color .1333s linear, box-shadow .1333s linear;
-
-  &:not(:disabled) {
-    &:is(:focus-visible, :hover) {
-      background-color: rgba(black, 0.1);
-    }
-
-    &:is(:focus-visible, :active) {
-      box-shadow: 0 0 0 8px rgba(black, 0.1);
+    app-icon,
+    [app-icon] {
+      $size: 24px;
+      width: $size;
+      height: $size;
     }
   }
 
-  &>app-icon {
-    $size: 24px;
-    width: $size;
-    height: $size;
+  main {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 8px;
+    align-items: center;
+    padding-bottom: 16px;
+
+    max-height: 40vh;
+
+    .name {
+      margin-left: 24px;
+      color: var(--primary-shade-20);
+    }
+
+    button {
+      margin-right: 16px;
+
+      app-icon,
+      [app-icon] {
+        $size: 16px;
+        width: $size;
+        height: $size;
+      }
+    }
   }
 }

@@ -1,0 +1,30 @@
+%jgr-button {
+  --icon-color: var(--primary);
+
+  display: flex;
+
+  border-radius: 8px;
+  padding: 8px;
+
+  transition: background-color .1333s linear, box-shadow .1333s linear;
+
+  &:disabled {
+    filter: saturate(.25);
+  }
+
+  &:not(:disabled) {
+    &:is(:focus-visible, :hover) {
+      background-color: rgba(black, 0.1);
+    }
+
+    &:is(:focus-visible, :active) {
+      box-shadow: 0 0 0 8px rgba(black, 0.1);
+    }
+  }
+
+  &>app-icon {
+    $size: 24px;
+    width: $size;
+    height: $size;
+  }
+}

@@ -1,0 +1,42 @@
+@if (type === 'edit') {
+<button (click)="handleEditPlaylistClick()">
+  <app-icon icon="edit" />
+  Editar playlist
+</button>
+}
+
+@if (songs && songs.length > 0) {
+<button (click)="handlePlayAllClick()">
+  <app-icon icon="play" />
+  Tocar todas
+</button>
+}
+
+@if (type === 'create') {
+<button (click)="handleCreatePlaylistClick()">
+  <app-icon icon="playlist" />
+  Criar playlist
+</button>
+}
+
+<dialog #playlistDialog class="modal" (close)="handleDialogClose()">
+  @if (playlistDialog.open) {
+  @let title = type === 'edit' ? 'Editar playlist' : 'Criar playlist';
+  @let button = type === 'edit' ? 'Editar' : 'Criar';
+
+  <header>
+    <h2 [attr.data-text]="title">{{ title }}</h2>
+    <button (click)="playlistDialog.close()">
+      <app-icon icon="close" />
+    </button>
+  </header>
+  <main>
+    <form [formGroup]="formGroup" (ngSubmit)="handlePlaylistSubmit()">
+      <app-input id="playlist-name" formControlName="name">
+        Nome da playlist
+      </app-input>
+      <button type="submit" [disabled]="formGroup.invalid">{{ button }}</button>
+    </form>
+  </main>
+  }
+</dialog>

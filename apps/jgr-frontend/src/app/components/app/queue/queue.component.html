@@ -1,0 +1,28 @@
+<button (click)="handleButtonClick()" title="Fila">
+  <app-icon icon="playlist" />
+</button>
+
+<dialog #queueDialog class="modal">
+  @if (queueDialog.open) {
+  <header>
+    <h2 data-text="Fila">Fila</h2>
+    <button (click)="queueDialog.close()">
+      <app-icon icon="close" />
+    </button>
+  </header>
+  <main>
+    @let queue = queue$ | async;
+    @if (queue && queue.length > 0) {
+    @for (song of queue; track $index) {
+    <span class="title">{{ song.title }}</span>
+    <span class="artist">{{ song.artist }}</span>
+    <button type="button" (click)="handleRemoveClick($index)">
+      <app-icon icon="delete" />
+    </button>
+    }
+    } @else {
+    <span class="title">Não há músicas na fila</span>
+    }
+  </main>
+  }
+</dialog>

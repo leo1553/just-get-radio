@@ -1,0 +1,26 @@
+@let playlist = playlist$ | async;
+<header>
+  @let playlistName = playlist != null ? playlist.name : 'Playlist';
+  @let playlistTitle = playlist != null ? `Playlist: ${playlist.name}` : 'Playlist';
+  <h1 [attr.data-text]="playlistTitle">{{ playlistTitle }}</h1>
+  <app-playlist-button type="edit" [id]="playlist?.id" [name]="playlistName" [songs]="playlist?.songs"
+    (edit)="handlePlaylistEdit($event)" />
+</header>
+<main>
+  @if (playlist) {
+  @if (playlist.songs.length > 0) {
+  @for (song of playlist.songs; track song.id) {
+  <app-song [id]="song.id" [title]="song.title" [artist]="song.artist" [cover]="song.cover" [duration]="song.duration"
+    [url]="song.url" [deletable]="true" (delete)="handleSongDelete(playlist, $index)" />
+  }
+  } @else {
+  <span>
+    A playlist está vazia.
+  </span>
+  }
+  } @else {
+  <span>
+    Carregando...
+  </span>
+  }
+</main>
