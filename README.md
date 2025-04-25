@@ -14,7 +14,7 @@ O que esperamos:
 - [ ] Docker
 - [x] Git com Gitflow
 - [ ] Testes com mínimo de 25% de cobertura (unitários e integração)
-- [ ] `gerenciamento de playlists`
+- [x] `gerenciamento de playlists`
 - [x] `API funcional`
 
 Extra (opcional):
@@ -37,7 +37,7 @@ Extra (opcional):
 - [x] Barra de música
   - Exibir nome da música e autor
   - Botões de play/pausa, controle de volume, proxima música
-- [ ] Criar playlists
+- [x] Criar playlists
   - Criar tabelas de playlists
   - Adicionar telas para criar, deletar e modificar playlists
   - Ajusta busca para exibir playlists
@@ -45,3 +45,31 @@ Extra (opcional):
   - Configurar nginx para distribuir os arquivos estáticos
 - [ ] Adicionar testes unitários
 - [ ] Adicionar documentação
+
+### Dependências
+
+**Geral**<br>
+- Node 18.20.18
+- Python
+- Microsoft Visual Studio
+
+**jgr-frontend**<br>
+- [Angular 19](https://angular.dev/overview)
+- [YouTube Player API](https://developers.google.com/youtube/iframe_api_reference)
+
+**jgr-backend**<br>
+- [NestJS 10](https://docs.nestjs.com/)
+- axios
+- typeorm
+- better-sqlite3
+- swagger
+
+### Instalação
+
+Para instalar o projeto, utilize `pnpm install` na pasta raiz. Para que o backend possa ser inicializado, é necessário compilar o binário da biblioteca `better-sqlite3` que necessita de Python e um compilador de C. Em Windows, é necessário ter o Microsoft Visual Studio com as ferramentas de desenvolvimento de C++ instalado.
+
+Para iniciar o ambiente de desenvolvimento, utilize `pnpm dev`.
+
+### API
+
+A documentação da API é gerada automaticamente pelo swagger. Para vê-la basta iniciar o servidor e acessar `localhost:3000/swagger`.
